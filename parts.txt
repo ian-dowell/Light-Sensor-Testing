@@ -1,0 +1,5 @@
+esp32-c6-mini-1 devkit
+https://www.adafruit.com/product/6525
+https://www.adafruit.com/product/6524
+https://www.adafruit.com/product/4681
+https://www.adafruit.com/product/4754

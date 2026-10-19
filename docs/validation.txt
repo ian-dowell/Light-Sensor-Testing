@@ -1,0 +1,47 @@
+ESP32 four-sensor demo — validation
+Date: 2026-10-16 (America/Chicago)
+
+Result: both ESP32-C6 configurations compiled successfully (exit code 0).
+Arduino CLI: 1.5.1
+Espressif Arduino-ESP32 core: 3.3.12
+Compiler warning setting: all; no warnings or errors in either build log.
+
+Native USB console:
+FQBN: esp32:esp32:esp32c6:CDCOnBoot=cdc,FlashSize=4M
+Sketch uses 330256 bytes (25%) of program storage space. Maximum is 1310720 bytes.
+Global variables use 16832 bytes (5%) of dynamic memory, leaving 310848 bytes for local variables. Maximum is 327680 bytes.
+
+USB-to-UART bridge console:
+FQBN: esp32:esp32:esp32c6:CDCOnBoot=default,FlashSize=4M
+Sketch uses 325126 bytes (24%) of program storage space. Maximum is 1310720 bytes.
+Global variables use 16656 bytes (5%) of dynamic memory, leaving 311024 bytes for local variables. Maximum is 327680 bytes.
+
+Sensor/library sources compiled:
+Adafruit TCS3448 1.0.0
+Adafruit AS7343 1.1.0
+Adafruit TSL2585 1.0.0
+BH1750 (Christopher Laws) 1.3.0
+Adafruit BNO08x RVC 1.0.2
+Adafruit BusIO 1.17.4
+Wire / SPI from ESP32 core 3.3.12
+Downloaded ZIPs were verified against the Arduino library-index SHA-256 checksums.
+Unified Sensor is a declared RVC dependency; its headers are not used by this build.
+
+Local compile command (executed from the project root):
+"/Applications/Arduino IDE.app/Contents/Resources/app/lib/backend/resources/arduino-cli" compile --config-file .build/arduino-cli.yaml --fqbn esp32:esp32:esp32c6:CDCOnBoot=cdc,FlashSize=4M --libraries .build/libraries --build-path .build/esp32c6 --warnings all ESP32_FourSensorDemo
+The second build used CDCOnBoot=default and .build/esp32c6-uart-console.
+For a portable build with installed libraries, use the README Arduino CLI command.
+
+Review:
+- Checked GPIO23 SDA, GPIO22 SCL, GPIO20 UART1 RX against the official DevKitM-1 pinout.
+- Checked P0 high/P1 low and BNO085 SDA/TX wiring against the official UART-RVC guide.
+- Confirmed RX-only UART1 configuration against the installed ESP32 core source.
+- Checked current library APIs, TCS3448 wavelength labels and continuous-read behavior.
+- Rendered SVG to PNG and visually inspected the wiring diagram; SVG XML parses.
+
+Limit: no physical ESP32/sensor execution, electrical measurements, upload, or calibration was performed.
+Confirm the exact board model/pin labels, then run the README hardware demonstration.
+
+SHA-256 of compiled sketch sources:
+c90ac8ff6fd2bbe190a790fad4819bbea59f7bf0f8cf7d963251f331bc6f8833  ESP32_FourSensorDemo/ESP32_FourSensorDemo.ino
+7c63fdddd1ac566e964c18da709e32b6d96c04dffa3ff30aa068917359aeebf3  ESP32_FourSensorDemo/LightSensors.h

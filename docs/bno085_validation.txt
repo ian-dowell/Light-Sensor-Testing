@@ -1,0 +1,54 @@
+BNO085 troubleshooting and diagnostic validation
+Date: 2026-10-16 (America/Chicago)
+
+Hardware finding:
+The user reports red -> 3.3 V, black -> GND, blue -> seventh header pin
+on the I2C side, with P0/P1 unconnected. Adafruit #4754 defaults to I2C
+in that configuration. The existing application expects UART-RVC.
+Required correction: P0 -> 3V3, P1 remains LOW by its default pulldown
+with its solder jumper open, verify blue -> GPIO20, then power-cycle.
+No original four-sensor sketch source was changed.
+
+Software checks:
+- Independent review of the original UART configuration, polling, and
+  local Adafruit_BNO08x_RVC 1.0.2 implementation found no evident cause
+  for persistent absence with correctly configured hardware.
+- Five strict C++11 host parser tests passed: signed/chunked decoding,
+  noise/back-to-back frames, checksum failure preserving the last good
+  reading, truncated-frame recovery, and payload headers/long noise.
+- Optional AddressSanitizer execution stalled without output and did
+  not provide a sanitizer result. The ordinary host tests passed.
+- Standalone diagnostic compiled for both ESP32-C6 console settings.
+  Arduino CLI 1.5.1, ESP32 core 3.3.12, warnings=all.
+  No sensor libraries required. Build logs show no warnings/errors.
+
+Native USB (CDCOnBoot=cdc, FlashSize=4M):
+  Program: 286468 / 1310720 bytes (21%).
+  Globals: 15328 / 327680 bytes (4%).
+  Log: .build/bno-diagnostics-cdc.log
+
+USB-to-UART console (CDCOnBoot=default, FlashSize=4M):
+  Program: 257878 / 1310720 bytes (19%).
+  Globals: 14060 / 327680 bytes (4%).
+  Log: .build/bno-diagnostics-uart.log
+
+Host test output: .build/bno-diagnostics-parser-test-plain.log
+Host test commands, run from the project root:
+c++ -std=c++11 -Wall -Wextra -Werror -pedantic tests/test_bno_rvc_parser.cpp -o .build/test_bno_rvc_parser_plain
+.build/test_bno_rvc_parser_plain
+
+Local compile command, run from the project root:
+"/Applications/Arduino IDE.app/Contents/Resources/app/lib/backend/resources/arduino-cli" compile --config-file .build/arduino-cli.yaml --fqbn esp32:esp32:esp32c6:CDCOnBoot=cdc,FlashSize=4M --build-path .build/bno-diagnostics-cdc --warnings all BNO085_Diagnostics
+For the second build, use CDCOnBoot=default and .build/bno-diagnostics-uart.
+
+SHA-256 of diagnostic sources:
+96112a94de5e6b570226be0d7df01daebce80e2b58e716cb057ba2ea875e106b  BNO085_Diagnostics/BNO085_Diagnostics.ino
+9d77f5bf96f63fbb2986a215acd833ad549359893ce7cf8720be8a49f0db5d71  BNO085_Diagnostics/RvcParser.h
+b0075a4dea3177cd110fa2f6240f2533a6e741eb1c0f569a7ed213126b2a80d6  tests/test_bno_rvc_parser.cpp
+
+Limitations:
+No ESP32 USB serial device was exposed on this Mac. No upload, live
+serial capture, voltage measurement, or sensor hardware test was done.
+The header pin's printed label and actual physical wiring remain to
+be verified by the user. Successful communication after the wiring
+correction is not yet confirmed.

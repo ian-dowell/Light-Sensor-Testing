@@ -1,0 +1,162 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1380" viewBox="0 0 1800 1380" role="img" aria-labelledby="title description">
+<title id="title">ESP32-C6 four-sensor demonstration wiring</title>
+<desc id="description">Three light sensors share I2C on GPIO23 SDA and GPIO22 SCL. All four sensors receive 3.3 volts at VIN and common ground. BNO085 uses UART-RVC: SDA or TX to GPIO20 RX, P0 to 3.3 volts, P1 to ground. Boxes use logical pin names, not physical pin positions.</desc>
+<defs><marker id="rxArrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="4" markerHeight="4" orient="auto"><path d="M 0 0 L 12 6 L 0 12 Z" fill="#7650ab"/></marker></defs>
+<rect width="1800" height="1380" fill="white"/>
+<g font-family="Arial, Helvetica, sans-serif" fill="#182c3d">
+
+<text x="60" y="67" font-size="42" fill="#182c3d" font-weight="700" text-anchor="start">ESP32-C6  /  four-sensor demo</text>
+<text x="60" y="108" font-size="24" fill="#536575" font-weight="400" text-anchor="start">TCS3448 + TSL2585 + BH1750 on I2C  •  BNO085 on UART-RVC</text>
+<rect x="60" y="135" width="1680" height="58" rx="10" fill="#eef4f8" stroke="#dbe5ec" stroke-width="2"/>
+<text x="82" y="172" font-size="22" fill="#182c3d" font-weight="600" text-anchor="start">Assumed board: ESP32-C6-DevKitM-1. GPIO numbers are chip GPIO labels, not header positions.</text>
+<text x="60" y="240" font-size="26" fill="#176bb3" font-weight="700" text-anchor="start">01</text>
+<text x="115" y="240" font-size="27" fill="#182c3d" font-weight="700" text-anchor="start">Shared I2C bus</text>
+<text x="1740" y="240" font-size="19" fill="#536575" font-weight="400" text-anchor="end">Dots = joined wires. Arched crossings = separate wires.</text>
+<text x="74" y="477" font-size="19" fill="#bd343b" font-weight="700" text-anchor="end">3V3</text>
+<path d="M96,470 L1720,470" fill="none" stroke="#bd343b" stroke-width="4" stroke-linecap="round" />
+<text x="74" y="522" font-size="19" fill="#344454" font-weight="700" text-anchor="end">GND</text>
+<path d="M96,515 L1720,515" fill="none" stroke="#344454" stroke-width="4" stroke-linecap="round" />
+<text x="74" y="567" font-size="19" fill="#176bb3" font-weight="700" text-anchor="end">SDA</text>
+<path d="M96,560 L1720,560" fill="none" stroke="#176bb3" stroke-width="4" stroke-linecap="round" />
+<text x="74" y="612" font-size="19" fill="#9c6c04" font-weight="700" text-anchor="end">SCL</text>
+<path d="M96,605 L1720,605" fill="none" stroke="#9c6c04" stroke-width="4" stroke-linecap="round" />
+<rect x="80" y="275" width="320" height="145" rx="15" fill="#f6f8fa" stroke="#cfdae3" stroke-width="2"/>
+<text x="240" y="313" font-size="29" fill="#182c3d" font-weight="700" text-anchor="middle">ESP32-C6</text>
+<text x="240" y="342" font-size="20" fill="#536575" font-weight="400" text-anchor="middle">Development board</text>
+<text x="240" y="371" font-size="19" fill="#536575" font-weight="400" text-anchor="middle">USB powers the board</text>
+<text x="120" y="405" font-size="17" fill="#bd343b" font-weight="700" text-anchor="middle">3V3</text>
+<path d="M120,420 L120,470" fill="none" stroke="white" stroke-width="9"/>
+<path d="M120,420 L120,470" fill="none" stroke="#bd343b" stroke-width="3.5"/>
+<circle cx="120" cy="420" r="6" fill="white" stroke="#bd343b" stroke-width="3"/>
+<circle cx="120" cy="470" r="6" fill="#bd343b"/>
+<text x="197" y="405" font-size="17" fill="#344454" font-weight="700" text-anchor="middle">GND</text>
+<path d="M197,420 L197,461 C209,461 209,479 197,479 L197,515" fill="none" stroke="white" stroke-width="9"/>
+<path d="M197,420 L197,461 C209,461 209,479 197,479 L197,515" fill="none" stroke="#344454" stroke-width="3.5"/>
+<circle cx="197" cy="420" r="6" fill="white" stroke="#344454" stroke-width="3"/>
+<circle cx="197" cy="515" r="6" fill="#344454"/>
+<text x="280" y="405" font-size="17" fill="#176bb3" font-weight="700" text-anchor="middle">23 / SDA</text>
+<path d="M280,420 L280,461 C292,461 292,479 280,479 L280,506 C292,506 292,524 280,524 L280,560" fill="none" stroke="white" stroke-width="9"/>
+<path d="M280,420 L280,461 C292,461 292,479 280,479 L280,506 C292,506 292,524 280,524 L280,560" fill="none" stroke="#176bb3" stroke-width="3.5"/>
+<circle cx="280" cy="420" r="6" fill="white" stroke="#176bb3" stroke-width="3"/>
+<circle cx="280" cy="560" r="6" fill="#176bb3"/>
+<text x="359" y="405" font-size="17" fill="#9c6c04" font-weight="700" text-anchor="middle">22 / SCL</text>
+<path d="M359,420 L359,461 C371,461 371,479 359,479 L359,506 C371,506 371,524 359,524 L359,551 C371,551 371,569 359,569 L359,605" fill="none" stroke="white" stroke-width="9"/>
+<path d="M359,420 L359,461 C371,461 371,479 359,479 L359,506 C371,506 371,524 359,524 L359,551 C371,551 371,569 359,569 L359,605" fill="none" stroke="#9c6c04" stroke-width="3.5"/>
+<circle cx="359" cy="420" r="6" fill="white" stroke="#9c6c04" stroke-width="3"/>
+<circle cx="359" cy="605" r="6" fill="#9c6c04"/>
+<rect x="520" y="275" width="320" height="145" rx="15" fill="#f6f8fa" stroke="#cfdae3" stroke-width="2"/>
+<text x="680" y="313" font-size="29" fill="#182c3d" font-weight="700" text-anchor="middle">TCS3448</text>
+<text x="680" y="342" font-size="20" fill="#536575" font-weight="400" text-anchor="middle">Adafruit #6525</text>
+<text x="680" y="371" font-size="19" fill="#536575" font-weight="400" text-anchor="middle">I2C address 0x59</text>
+<text x="560" y="405" font-size="17" fill="#bd343b" font-weight="700" text-anchor="middle">VIN</text>
+<path d="M560,420 L560,470" fill="none" stroke="white" stroke-width="9"/>
+<path d="M560,420 L560,470" fill="none" stroke="#bd343b" stroke-width="3.5"/>
+<circle cx="560" cy="420" r="6" fill="white" stroke="#bd343b" stroke-width="3"/>
+<circle cx="560" cy="470" r="6" fill="#bd343b"/>
+<text x="637" y="405" font-size="17" fill="#344454" font-weight="700" text-anchor="middle">GND</text>
+<path d="M637,420 L637,461 C649,461 649,479 637,479 L637,515" fill="none" stroke="white" stroke-width="9"/>
+<path d="M637,420 L637,461 C649,461 649,479 637,479 L637,515" fill="none" stroke="#344454" stroke-width="3.5"/>
+<circle cx="637" cy="420" r="6" fill="white" stroke="#344454" stroke-width="3"/>
+<circle cx="637" cy="515" r="6" fill="#344454"/>
+<text x="720" y="405" font-size="17" fill="#176bb3" font-weight="700" text-anchor="middle">SDA</text>
+<path d="M720,420 L720,461 C732,461 732,479 720,479 L720,506 C732,506 732,524 720,524 L720,560" fill="none" stroke="white" stroke-width="9"/>
+<path d="M720,420 L720,461 C732,461 732,479 720,479 L720,506 C732,506 732,524 720,524 L720,560" fill="none" stroke="#176bb3" stroke-width="3.5"/>
+<circle cx="720" cy="420" r="6" fill="white" stroke="#176bb3" stroke-width="3"/>
+<circle cx="720" cy="560" r="6" fill="#176bb3"/>
+<text x="799" y="405" font-size="17" fill="#9c6c04" font-weight="700" text-anchor="middle">SCL</text>
+<path d="M799,420 L799,461 C811,461 811,479 799,479 L799,506 C811,506 811,524 799,524 L799,551 C811,551 811,569 799,569 L799,605" fill="none" stroke="white" stroke-width="9"/>
+<path d="M799,420 L799,461 C811,461 811,479 799,479 L799,506 C811,506 811,524 799,524 L799,551 C811,551 811,569 799,569 L799,605" fill="none" stroke="#9c6c04" stroke-width="3.5"/>
+<circle cx="799" cy="420" r="6" fill="white" stroke="#9c6c04" stroke-width="3"/>
+<circle cx="799" cy="605" r="6" fill="#9c6c04"/>
+<rect x="960" y="275" width="320" height="145" rx="15" fill="#f6f8fa" stroke="#cfdae3" stroke-width="2"/>
+<text x="1120" y="313" font-size="29" fill="#182c3d" font-weight="700" text-anchor="middle">TSL2585</text>
+<text x="1120" y="342" font-size="20" fill="#536575" font-weight="400" text-anchor="middle">Adafruit #6524</text>
+<text x="1120" y="371" font-size="19" fill="#536575" font-weight="400" text-anchor="middle">I2C address 0x39</text>
+<text x="1000" y="405" font-size="17" fill="#bd343b" font-weight="700" text-anchor="middle">VIN</text>
+<path d="M1000,420 L1000,470" fill="none" stroke="white" stroke-width="9"/>
+<path d="M1000,420 L1000,470" fill="none" stroke="#bd343b" stroke-width="3.5"/>
+<circle cx="1000" cy="420" r="6" fill="white" stroke="#bd343b" stroke-width="3"/>
+<circle cx="1000" cy="470" r="6" fill="#bd343b"/>
+<text x="1077" y="405" font-size="17" fill="#344454" font-weight="700" text-anchor="middle">GND</text>
+<path d="M1077,420 L1077,461 C1089,461 1089,479 1077,479 L1077,515" fill="none" stroke="white" stroke-width="9"/>
+<path d="M1077,420 L1077,461 C1089,461 1089,479 1077,479 L1077,515" fill="none" stroke="#344454" stroke-width="3.5"/>
+<circle cx="1077" cy="420" r="6" fill="white" stroke="#344454" stroke-width="3"/>
+<circle cx="1077" cy="515" r="6" fill="#344454"/>
+<text x="1160" y="405" font-size="17" fill="#176bb3" font-weight="700" text-anchor="middle">SDA</text>
+<path d="M1160,420 L1160,461 C1172,461 1172,479 1160,479 L1160,506 C1172,506 1172,524 1160,524 L1160,560" fill="none" stroke="white" stroke-width="9"/>
+<path d="M1160,420 L1160,461 C1172,461 1172,479 1160,479 L1160,506 C1172,506 1172,524 1160,524 L1160,560" fill="none" stroke="#176bb3" stroke-width="3.5"/>
+<circle cx="1160" cy="420" r="6" fill="white" stroke="#176bb3" stroke-width="3"/>
+<circle cx="1160" cy="560" r="6" fill="#176bb3"/>
+<text x="1239" y="405" font-size="17" fill="#9c6c04" font-weight="700" text-anchor="middle">SCL</text>
+<path d="M1239,420 L1239,461 C1251,461 1251,479 1239,479 L1239,506 C1251,506 1251,524 1239,524 L1239,551 C1251,551 1251,569 1239,569 L1239,605" fill="none" stroke="white" stroke-width="9"/>
+<path d="M1239,420 L1239,461 C1251,461 1251,479 1239,479 L1239,506 C1251,506 1251,524 1239,524 L1239,551 C1251,551 1251,569 1239,569 L1239,605" fill="none" stroke="#9c6c04" stroke-width="3.5"/>
+<circle cx="1239" cy="420" r="6" fill="white" stroke="#9c6c04" stroke-width="3"/>
+<circle cx="1239" cy="605" r="6" fill="#9c6c04"/>
+<rect x="1400" y="275" width="320" height="145" rx="15" fill="#f6f8fa" stroke="#cfdae3" stroke-width="2"/>
+<text x="1560" y="313" font-size="29" fill="#182c3d" font-weight="700" text-anchor="middle">BH1750</text>
+<text x="1560" y="342" font-size="20" fill="#536575" font-weight="400" text-anchor="middle">Adafruit #4681</text>
+<text x="1560" y="371" font-size="19" fill="#536575" font-weight="400" text-anchor="middle">I2C address 0x23</text>
+<text x="1440" y="405" font-size="17" fill="#bd343b" font-weight="700" text-anchor="middle">VIN</text>
+<path d="M1440,420 L1440,470" fill="none" stroke="white" stroke-width="9"/>
+<path d="M1440,420 L1440,470" fill="none" stroke="#bd343b" stroke-width="3.5"/>
+<circle cx="1440" cy="420" r="6" fill="white" stroke="#bd343b" stroke-width="3"/>
+<circle cx="1440" cy="470" r="6" fill="#bd343b"/>
+<text x="1517" y="405" font-size="17" fill="#344454" font-weight="700" text-anchor="middle">GND</text>
+<path d="M1517,420 L1517,461 C1529,461 1529,479 1517,479 L1517,515" fill="none" stroke="white" stroke-width="9"/>
+<path d="M1517,420 L1517,461 C1529,461 1529,479 1517,479 L1517,515" fill="none" stroke="#344454" stroke-width="3.5"/>
+<circle cx="1517" cy="420" r="6" fill="white" stroke="#344454" stroke-width="3"/>
+<circle cx="1517" cy="515" r="6" fill="#344454"/>
+<text x="1600" y="405" font-size="17" fill="#176bb3" font-weight="700" text-anchor="middle">SDA</text>
+<path d="M1600,420 L1600,461 C1612,461 1612,479 1600,479 L1600,506 C1612,506 1612,524 1600,524 L1600,560" fill="none" stroke="white" stroke-width="9"/>
+<path d="M1600,420 L1600,461 C1612,461 1612,479 1600,479 L1600,506 C1612,506 1612,524 1600,524 L1600,560" fill="none" stroke="#176bb3" stroke-width="3.5"/>
+<circle cx="1600" cy="420" r="6" fill="white" stroke="#176bb3" stroke-width="3"/>
+<circle cx="1600" cy="560" r="6" fill="#176bb3"/>
+<text x="1679" y="405" font-size="17" fill="#9c6c04" font-weight="700" text-anchor="middle">SCL</text>
+<path d="M1679,420 L1679,461 C1691,461 1691,479 1679,479 L1679,506 C1691,506 1691,524 1679,524 L1679,551 C1691,551 1691,569 1679,569 L1679,605" fill="none" stroke="white" stroke-width="9"/>
+<path d="M1679,420 L1679,461 C1691,461 1691,479 1679,479 L1679,506 C1691,506 1691,524 1679,524 L1679,551 C1691,551 1691,569 1679,569 L1679,605" fill="none" stroke="#9c6c04" stroke-width="3.5"/>
+<circle cx="1679" cy="420" r="6" fill="white" stroke="#9c6c04" stroke-width="3"/>
+<circle cx="1679" cy="605" r="6" fill="#9c6c04"/>
+<text x="80" y="646" font-size="21" fill="#536575" font-weight="400" text-anchor="start">All three light sensors share these four wires. STEMMA QT daisy-chaining is optional for these three only.</text>
+<path d="M60,682 L1740,682" fill="none" stroke="#dbe3e9" stroke-width="2" stroke-linecap="round" />
+<text x="60" y="732" font-size="26" fill="#7650ab" font-weight="700" text-anchor="start">02</text>
+<text x="115" y="732" font-size="27" fill="#182c3d" font-weight="700" text-anchor="start">BNO085 UART-RVC</text>
+<text x="1740" y="732" font-size="20" fill="#536575" font-weight="400" text-anchor="end">115200 baud  •  8 data bits, no parity, 1 stop bit</text>
+<rect x="80" y="765" width="460" height="365" rx="15" fill="#f6f8fa" stroke="#cfdae3" stroke-width="2"/>
+<rect x="1120" y="765" width="600" height="365" rx="15" fill="#f6f8fa" stroke="#cfdae3" stroke-width="2"/>
+<text x="110" y="807" font-size="30" fill="#182c3d" font-weight="700" text-anchor="start">ESP32-C6</text>
+<text x="110" y="837" font-size="21" fill="#536575" font-weight="400" text-anchor="start">Same development board as above</text>
+<text x="1150" y="807" font-size="29" fill="#182c3d" font-weight="700" text-anchor="start">BNO085  /  Adafruit #4754</text>
+<text x="1150" y="837" font-size="22" fill="#7650ab" font-weight="600" text-anchor="start">Mode selectors: P0 HIGH, P1 LOW</text>
+<text x="514" y="885" font-size="23" fill="#bd343b" font-weight="700" text-anchor="end">3V3</text>
+<path d="M540,878 L1120,878" fill="none" stroke="#bd343b" stroke-width="4" stroke-linecap="round" />
+<path d="M820,878 L820,923" fill="none" stroke="#bd343b" stroke-width="4" stroke-linecap="round" />
+<path d="M820,923 L1120,923" fill="none" stroke="#bd343b" stroke-width="4" stroke-linecap="round" />
+<circle cx="820" cy="878" r="6" fill="#bd343b"/>
+<text x="1142" y="885" font-size="23" fill="#bd343b" font-weight="700" text-anchor="start">VIN</text>
+<text x="1142" y="930" font-size="23" fill="#bd343b" font-weight="700" text-anchor="start">P0 / PS0</text>
+<text x="514" y="985" font-size="23" fill="#344454" font-weight="700" text-anchor="end">GND</text>
+<path d="M540,978 L1120,978" fill="none" stroke="#344454" stroke-width="4" stroke-linecap="round" />
+<path d="M820,978 L820,1023" fill="none" stroke="#344454" stroke-width="4" stroke-linecap="round" />
+<path d="M820,1023 L1120,1023" fill="none" stroke="#344454" stroke-width="4" stroke-linecap="round" />
+<circle cx="820" cy="978" r="6" fill="#344454"/>
+<text x="1142" y="985" font-size="23" fill="#344454" font-weight="700" text-anchor="start">GND</text>
+<text x="1142" y="1030" font-size="23" fill="#344454" font-weight="700" text-anchor="start">P1 / PS1</text>
+<text x="514" y="1090" font-size="23" fill="#7650ab" font-weight="700" text-anchor="end">GPIO20 / RX</text>
+<path d="M1120,1083 L542,1083" fill="none" stroke="#7650ab" stroke-width="4" stroke-linecap="round" marker-end="url(#rxArrow)"/>
+<text x="1142" y="1090" font-size="23" fill="#7650ab" font-weight="700" text-anchor="start">SDA / TX (sensor output)</text>
+<text x="830" y="1066" font-size="20" fill="#7650ab" font-weight="400" text-anchor="middle">Orientation + acceleration</text>
+<circle cx="540" cy="878" r="6" fill="white" stroke="#bd343b" stroke-width="3"/>
+<circle cx="540" cy="978" r="6" fill="white" stroke="#344454" stroke-width="3"/>
+<circle cx="540" cy="1083" r="6" fill="white" stroke="#7650ab" stroke-width="3"/>
+<circle cx="1120" cy="878" r="6" fill="white" stroke="#bd343b" stroke-width="3"/>
+<circle cx="1120" cy="923" r="6" fill="white" stroke="#bd343b" stroke-width="3"/>
+<circle cx="1120" cy="978" r="6" fill="white" stroke="#344454" stroke-width="3"/>
+<circle cx="1120" cy="1023" r="6" fill="white" stroke="#344454" stroke-width="3"/>
+<circle cx="1120" cy="1083" r="6" fill="white" stroke="#7650ab" stroke-width="3"/>
+<rect x="60" y="1160" width="1680" height="165" rx="10" fill="#f8fafb" stroke="#dbe3e9" stroke-width="2"/>
+<text x="82" y="1193" font-size="23" fill="#182c3d" font-weight="700" text-anchor="start">Connection notes</text>
+<text x="82" y="1227" font-size="21" fill="#536575" font-weight="400" text-anchor="start">Use 3.3 V at every sensor VIN and one common GND. Leave each sensor&#x27;s regulator-output pin unconnected.</text>
+<text x="82" y="1258" font-size="21" fill="#536575" font-weight="400" text-anchor="start">BNO085: leave SCL/RX, DI, CS, INT, RST and BT open; do not connect its STEMMA QT socket to the I2C bus.</text>
+<text x="82" y="1289" font-size="21" fill="#536575" font-weight="400" text-anchor="start">Keep P1 jumper open; set P0/P1 with power off, then power-cycle. Keep light-sensor extra pins / address at defaults.</text>
+<text x="60" y="1358" font-size="18" fill="#536575" font-weight="400" text-anchor="start">Logical wiring diagram • Pin order is illustrative • See README.md for setup, pin table and official sources</text>
+</g></svg>
