@@ -2,6 +2,8 @@
 
 Open `ESP32_FourSensorDemo/ESP32_FourSensorDemo.ino` in Arduino IDE. It reads all four sensors from `parts.txt` and prints labeled measurements once per second at **115200 baud**. The three light sensors share I2C; the **BNO085 uses UART-RVC**.
 
+![Assembled ESP32-C6 project with a breadboard and four connected sensor breakout boards](images/IMG_5487.jpeg)
+
 | Part from `parts.txt` | Sensor | Demo output | Interface |
 | --- | --- | --- | --- |
 | [Adafruit 6525](https://www.adafruit.com/product/6525) | TCS3448 | Visible/NIR spectral channels and clear channel, raw counts | I2C `0x59` |
